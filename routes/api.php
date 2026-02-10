@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Room Status API Routes
+Route::get('/room-statuses', [\App\Http\Controllers\RoomStatusController::class, 'getStatuses']);
+Route::post('/room-statuses', [\App\Http\Controllers\RoomStatusController::class, 'updateStatus']);

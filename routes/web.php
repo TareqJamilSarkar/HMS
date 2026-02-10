@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\CustomerController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RestaurantBillController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomStatusController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TransactionRoomReservationController;
 use App\Http\Controllers\TypeController;
@@ -64,6 +66,13 @@ Route::group(['middleware' => ['auth', 'checkRole:Super,Admin']], function () {
     Route::get('/get-dialy-guest-chart-data', [ChartController::class, 'dailyGuestPerMonth']);
     Route::get('/get-dialy-guest/{year}/{month}/{day}', [ChartController::class, 'dailyGuest'])->name('chart.dailyGuest');
 });
+// Add to routes/api.php or web.php (with auth middleware)
+Route::middleware('auth')->group(function () {
+    Route::post('/complaints', [App\Http\Controllers\ComplaintController::class, 'store']);
+    Route::get('/complaints/summary', [App\Http\Controllers\ComplaintController::class, 'indexSummary']);
+    Route::get('/complaints/room/{roomId}', [App\Http\Controllers\ComplaintController::class, 'byRoom']);
+    Route::post('/complaints/{id}/resolve', [App\Http\Controllers\ComplaintController::class, 'resolve']);
+});
 
 Route::group(['middleware' => ['auth', 'checkRole:Super,Admin,Customer']], function () {
     Route::get('/activity-log', [ActivityController::class, 'index'])->name('activity-log.index');
@@ -79,6 +88,14 @@ Route::group(['middleware' => ['auth', 'checkRole:Super,Admin,Customer']], funct
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/mark-all-as-read', [NotificationsController::class, 'markAllAsRead'])->name('notification.markAllAsRead');
+
+    // Settings routes
+    Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
+    Route::put('/settings/update', [SettingsController::class, 'update'])->name('settings.update');
+    Route::put('/settings/update-password', [SettingsController::class, 'updatePassword'])->name('settings.updatePassword');
+
+    // Analytics routes
+    Route::get('/analytics', [AnalyticsController::class, 'index'])->name('analytics.index');
 
     Route::get('/notification-to/{id}', [NotificationsController::class, 'routeTo'])->name('notification.routeTo');
 });

@@ -9,9 +9,14 @@ class RoomStatus extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'code',
-        'information',
+    protected $fillable = ['room_id', 'date', 'status', 'booking_id'];
+
+    protected $casts = [
+        'date' => 'date',
     ];
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
 }

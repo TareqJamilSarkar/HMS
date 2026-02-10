@@ -1,0 +1,127 @@
+/* Room Status Colors */
+
+.status-normal-checkout {
+    background-color: #28a745 !important;
+    color: white !important;
+    border-color: #1e7e34 !important;
+}
+
+.status-early-checkin {
+    background-color: #ffc107 !important;
+    color: #333 !important;
+    border-color: #e0a800 !important;
+}
+
+.status-early-checkout {
+    background-color: #17a2b8 !important;
+    color: white !important;
+    border-color: #117a8b !important;
+}
+
+.status-late-checkout {
+    background-color: #dc3545 !important;
+    color: white !important;
+    border-color: #bd2130 !important;
+}
+
+.status-booked {
+    background-color: #e91e63 !important;
+    color: white !important;
+    border-color: #c2185b !important;
+}
+
+/* Add transition for smooth color changes */
+.room-btn {
+    transition: background-color 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* Optional: Add status indicators/badges */
+.room-btn.status-normal-checkout::after,
+.room-btn.status-early-checkin::after,
+.room-btn.status-early-checkout::after,
+.room-btn.status-late-checkout::after,
+.room-btn.status-booked::after {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-left: 6px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.room-btn.status-early-checkin::after,
+.room-btn.status-early-checkout::after {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Room Search Styles */
+#room-search-input {
+    border-radius: 0.375rem;
+    font-size: 0.95rem;
+}
+
+#room-search-input::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+#room-search-input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Category Filter Dropdown */
+#room-category-filter {
+    border-radius: 0.375rem;
+    font-size: 0.95rem;
+    border: 1px solid #dee2e6;
+}
+
+#room-category-filter:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+#room-category-filter option {
+    padding: 8px 12px;
+}
+
+#room-search-btn,
+#room-clear-btn {
+    border-radius: 0.375rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+#room-search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+}
+
+#room-clear-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+
+/* Smooth transitions for room visibility */
+.room-btn {
+    transition: all 0.3s ease !important;
+    opacity: 1;
+}
+
+/* No results message styling */
+#room-no-results-msg {
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+

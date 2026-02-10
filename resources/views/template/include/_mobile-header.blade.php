@@ -172,7 +172,7 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profile</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                            <li><a class="dropdown-item" href="{{ route('settings.index') }}"><i class="fas fa-cog me-2"></i>Settings</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -341,7 +341,17 @@
                     <div class="nav-section">
                         <div class="nav-section-title">Administration</div>
 
-                        <a href="#" class="nav-item">
+                        <a href="{{ route('analytics.index') }}" class="nav-item">
+                            <div class="nav-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="nav-content">
+                                <div class="nav-title">Analytics</div>
+                                <div class="nav-subtitle">Reports & Financial</div>
+                            </div>
+                        </a>
+
+                        <a href="{{ route('settings.index') }}" class="nav-item">
                             <div class="nav-icon">
                                 <i class="fas fa-cogs"></i>
                             </div>
